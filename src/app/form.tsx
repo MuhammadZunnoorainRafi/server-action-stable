@@ -10,7 +10,7 @@ function Form() {
   };
   const [state, dispatch] = useFormState(submitForm, initialState);
   return (
-    <div className="card card-bordered card-compact">
+    <div className="card card-bordered card-compact mt-10">
       <h1 className=" text-center py-2 font-bold text-lg">Submit tasks</h1>
       <form action={dispatch} className="form-control gap-2 card-body">
         <input

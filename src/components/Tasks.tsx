@@ -18,7 +18,7 @@ function Tasks({ tasks }: { tasks: Tasks[] }) {
   const [parent] = useAutoAnimate();
 
   return (
-    <ul ref={parent} className="space-y-2 mb-10">
+    <ul ref={parent} className="space-y-2">
       {tasks.map((task) => (
         <div
           className="p-2 rounded-md border border-slate-600 flex items-center justify-between"

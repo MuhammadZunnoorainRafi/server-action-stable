@@ -1,5 +1,6 @@
 // 'use client';
-import { useAutoAnimate } from '@formkit/auto-animate/react';
+import { deleteTask } from '@/actions/deleteItem';
+// import { useAutoAnimate } from '@formkit/auto-animate/react';
 import React from 'react';
 import { RiDeleteBin2Fill, RiEdit2Line } from 'react-icons/ri';
 
@@ -15,10 +16,10 @@ function Tasks({ tasks }: { tasks: Tasks[] }) {
     return new Date(date).toLocaleDateString();
   };
 
-  const [parent] = useAutoAnimate();
+  //   const [parent] = useAutoAnimate();
 
   return (
-    <ul ref={parent} className="space-y-2 mb-10">
+    <ul className="space-y-2 mb-10">
       {tasks.map((task) => (
         <div
           className="p-2 rounded-md border border-slate-600 flex items-center justify-between"
@@ -26,11 +27,15 @@ function Tasks({ tasks }: { tasks: Tasks[] }) {
         >
           <div>
             <div className="flex items-center justify-start gap-1">
+              <input type="hidden" name="taskId" value={task.id} />
               <p className="font-bold text-slate-50 ">{task.title}</p>
-              <button className="btn btn-xs btn-ghost">
+              <button className="btn btn-xs hover:btn-primary">
                 <RiEdit2Line />
               </button>
-              <button formAction={deleteItem} className="btn btn-xs btn-ghost">
+              <button
+                formAction={deleteTask}
+                className="btn btn-xs hover:btn-error"
+              >
                 <RiDeleteBin2Fill />
               </button>
             </div>

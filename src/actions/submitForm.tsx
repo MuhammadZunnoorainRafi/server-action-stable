@@ -5,11 +5,11 @@ import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 
 type State = {
+  message?: string | null;
   errors?: {
     title?: string[];
     description?: string[];
   };
-  message?: string | null;
 };
 
 const formSchema = z.object({

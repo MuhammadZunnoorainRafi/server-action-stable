@@ -2,6 +2,10 @@
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { RiEdit2Line } from 'react-icons/ri';
 import DeleteButton from './DeleteButton';
+import { useFormState } from 'react-dom';
+import { editItemAction } from '@/actions/editItem';
+import Submit from './Submit';
+import EditFormModal from './EditFormModal';
 
 interface Tasks {
   id: string;
@@ -14,11 +18,15 @@ function Tasks({ tasks }: { tasks: Tasks[] }) {
   const dateC = (date: Date) => {
     return new Date(date).toLocaleDateString();
   };
+  const initialState = {
+    errors: {},
+    message: null,
+  };
 
   const [parent] = useAutoAnimate();
 
   return (
-    <ul ref={parent} className="space-y-2">
+    <div ref={parent} className="space-y-2">
       {tasks.map((task) => (
         <div
           className="p-2 rounded-md border border-slate-600 flex items-center justify-between"
@@ -28,11 +36,15 @@ function Tasks({ tasks }: { tasks: Tasks[] }) {
             <div className="flex items-center justify-start gap-1">
               <input type="hidden" name="taskId" value={task.id} />
               <p className="font-bold text-slate-50 ">{task.title}</p>
-              <button className="btn btn-xs hover:btn-primary">
-                <RiEdit2Line />
-              </button>
+              <EditFormModal
+                title={task.title}
+                description={task.description}
+                id={task.id}
+              />
+
               <DeleteButton id={task.id} />
             </div>
+            <p className="xs italic underline">{task.id}</p>
             <p className="text-slate-200">{task.description}</p>
           </div>
           <p className="text-sm italic text-slate-400">
@@ -40,7 +52,7 @@ function Tasks({ tasks }: { tasks: Tasks[] }) {
           </p>
         </div>
       ))}
-    </ul>
+    </div>
   );
 }
 

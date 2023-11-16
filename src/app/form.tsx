@@ -1,6 +1,7 @@
 'use client';
 
 import { submitFormAction } from '@/actions/submitForm';
+import Submit from '@/components/Submit';
 import { useFormState } from 'react-dom';
 
 function Form() {
@@ -48,9 +49,9 @@ function Form() {
             ))}
           </div>
         )}
-        <button type="submit" className="btn btn-primary btn-sm">
-          Submit
-        </button>
+        <div className=" text-center">
+          <Submit />
+        </div>
       </form>
     </div>
   );

@@ -4,12 +4,12 @@ import { prismaDB } from '@/utils/db';
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 
-type State = {
-  message?: string | null;
+export type State = {
   errors?: {
     title?: string[];
     description?: string[];
   };
+  message?: string | null;
 };
 
 const formSchema = z.object({
@@ -17,7 +17,7 @@ const formSchema = z.object({
   description: z.string().min(1, 'Enter description'),
 });
 
-export async function submitForm(prevState: State, formData: FormData) {
+export async function submitFormAction(prevState: State, formData: FormData) {
   const validation = formSchema.safeParse({
     title: formData.get('title'),
     description: formData.get('description'),

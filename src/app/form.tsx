@@ -1,14 +1,11 @@
 'use client';
 
-import { submitForm } from '@/actions/submitForm';
+import { submitFormAction } from '@/actions/submitForm';
 import { useFormState } from 'react-dom';
 
 function Form() {
-  const initialState = {
-    message: null,
-    errors: {},
-  };
-  const [state, dispatch] = useFormState(submitForm, initialState);
+  const initialState = { message: null, errors: {} };
+  const [state, dispatch] = useFormState(submitFormAction, initialState);
   return (
     <div className="card card-bordered card-compact mt-10">
       <h1 className=" text-center py-2 font-bold text-lg">Submit tasks</h1>
